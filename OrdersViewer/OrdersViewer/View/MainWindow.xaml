@@ -1,0 +1,53 @@
+﻿<Window x:Class="OrdersViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrdersViewer"
+        mc:Ignorable="d"
+        Title="Просмотр заказов" Height="450" Width="800" SizeToContent="Width">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Margin="3" Header="Подразделения">
+            <StackPanel Orientation="Vertical">
+                <UniformGrid Columns="2">
+                    <Button Content="Добавить" Command="{Binding AddNewSubdivisionCommand}"/>
+                    <Button Margin="3,0,0,0" Content="Изменить" Command="{Binding EditSubdivisionCommand}"/>
+                </UniformGrid>
+                <ListBox Margin="0,3" ItemsSource="{Binding Subdivisions}" SelectedItem="{Binding SelectedSubdivision}" DisplayMemberPath="Title"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Margin="3" Header="Сотрудники">
+            <StackPanel Orientation="Vertical">
+                <UniformGrid Columns="2">
+                    <Button Content="Добавить" Command="{Binding AddNewEmployeeCommand}"/>
+                    <Button Margin="3,0,0,0" Content="Изменить" Command="{Binding EditEmployeeCommand}"/>
+                </UniformGrid>
+                <ListBox Margin="0,3" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="2" Margin="3" Header="Заказы">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Добавить" Command="{Binding AddNewOrderCommand}"/>
+                    <Button Margin="3,0" Content="Изменить" Command="{Binding EditOrderCommand}"/>
+                    <Button Content="Удалить" Command="{Binding DeleteOrderCommand}"/>
+                </StackPanel>
+                <ListView Margin="0,3" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateOfOrder, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Дата заказа"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NumberOrder}" Header="Номер заказа" Width="Auto"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Partner}" Header="Контрагент" Width="Auto"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Employee}" Header="Сотрудник" Width="Auto"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

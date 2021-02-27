@@ -1,0 +1,32 @@
+﻿<Window x:Class="OrdersViewer.View.SubdivisionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrdersViewer.View"
+        mc:Ignorable="d"
+        Title="Подразделение" Height="200" Width="400" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Подразделение:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" MinWidth="100" Margin="3,0" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Руководитель:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="3,0" MinWidth="200" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <UniformGrid Grid.Row="2" Grid.Column="1" Columns="2">
+            <Button Margin="5" Content="Сохранить" Command="{Binding SaveSubdivisionCommand}"/>
+            <Button Margin="5" Content="Отменить" IsCancel="True"/>
+        </UniformGrid>
+
+    </Grid>
+</Window>

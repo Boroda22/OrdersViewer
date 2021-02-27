@@ -1,0 +1,50 @@
+﻿<Window x:Class="OrdersViewer.View.EmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrdersViewer.View"
+        mc:Ignorable="d"
+        Title="Сотрудник" Height="300" Width="400" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Фамилия:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" MinWidth="100" Margin="3,0" Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Имя:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" MinWidth="200" Margin="3,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Отчество:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1" MinWidth="200" Margin="3,0" Text="{Binding MiddleName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Дата рождения:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" Margin="3,0" Width="150" SelectedDate="{Binding DateOfBirth}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Пол:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Margin="3,0" Width="60" ItemsSource="{Binding Sexes}" SelectedItem="{Binding SelectedSex}" DisplayMemberPath="Title" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Подразделение:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" Margin="3,0" ItemsSource="{Binding Subdivisions}" SelectedItem="{Binding SelecedSubdivision}" DisplayMemberPath="Title" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <UniformGrid Grid.Row="6" Grid.Column="1" Columns="2">
+            <Button Margin="5" Content="Сохранить" Command="{Binding SaveEmployeeCommand}"/>
+            <Button Margin="5" Content="Отменить" IsCancel="True"/>
+        </UniformGrid>
+
+
+    </Grid>
+</Window>
